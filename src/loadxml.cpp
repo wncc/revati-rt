@@ -5,7 +5,7 @@
 #include "material.h"
 #include "sphere.h"
 #include "camera.h"
-#include "tinyxml/tinyxml.h"
+#include "../tinyxml/tinyxml.h"
 #include <iostream>
 #include <sstream>
 #include <iterator>
