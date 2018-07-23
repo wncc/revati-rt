@@ -7,18 +7,18 @@ using namespace std;
 class image {
 
 	private:
-		float width;
-		float height;
+		double width;
+		double height;
 		color bgcolor;																																																																																																																																																																																																																																																																																																																																																							
 		char* data;
 	public:
 		image();
-		image(float Width, float Height, color Bgcolor);
-		float get_width() const;
-		float get_height() const;
+		image(double Width, double Height, color Bgcolor);
+		double get_width() const;
+		double get_height() const;
 		color get_bgcolor() const;
-		color get_pixel(float x, float y) const;
-		void set_pixel(float x, float y, color clr);
+		color get_pixel(double x, double y) const;
+		void set_pixel(double x, double y, color clr);
 		void write(string filename) const;
 		void print(ostream &stream) const;
 };

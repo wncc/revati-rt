@@ -22,6 +22,7 @@ class material {
 		string get_id() const;
 		color get_diffuse() const;
 		color get_specular() const;
+		color get_reflect() const;
 		color get_transmit() const;
 		double get_eta() const;
 		double get_n() const;

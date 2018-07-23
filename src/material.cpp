@@ -44,6 +44,10 @@ color material :: get_specular() const{
 	return specular;
 }
 
+color material :: get_reflect() const{
+	return reflect;
+}
+
 void material :: print(ostream &stream) const{
 	stream << "MATERIAL:" << endl;
 	stream << "\tid- " << id << endl;

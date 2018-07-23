@@ -68,22 +68,12 @@
 	</simplemat>	
 </materials>
 
-<objects>	
-	<cone material="diffuse_green">
-		<center vector3="20.0 10 8000.0" />
-		<radius double="20.0" />
+<objects>
+	<cone material="diffuse_blue">
+		<center vector3="40 -20 7950.0" />
+		<radius double="15.0" />
 		<height double="40.0" />
 	</cone>
-	<cylinder material="diffuse_red">
-		<center vector3="-25 20 8050.0" />
-		<radius double="15.0" />
-		<height double="40.0" />
-	</cylinder>
-	<sphere material="diffuse_blue">
-		<center vector3="15 -25 7950.0" />
-		<radius double="15.0" />
-		<height double="40.0" />
-	</sphere>
 </objects>
 
 <lights>
@@ -101,7 +91,7 @@
 
 <integrator>
 	<whitted>
-		<depth-of-recursion int="3" />
+		<depth-of-recursion int="1" />
 	</whitted>
 </integrator>
 

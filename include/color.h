@@ -6,17 +6,18 @@ using namespace std;
 class color {
 
 	private:
-		float c[3];
+		double c[3];
 	public:
 		color();
-		color(float r, float g, float b);
-		float r() const;
-		float g() const;
-		float b() const;
+		color(double r, double g, double b);
+		double r() const;
+		double g() const;
+		double b() const;
 		void clamp();
 		color& operator+=(const color &c1);
-		color& operator/=(float c1);
+		color& operator/=(double c1);
+		color& operator*=(const color &c1);
 		color operator*(const color &c1) const;
-		color operator*(float t) const;
+		color operator*(double t) const;
 		void print(ostream &stream) const;
 };

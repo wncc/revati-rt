@@ -6,6 +6,8 @@
 #include "image.h"
 #include "material.h"
 #include "sphere.h"
+#include "cone.h"
+#include "cylinder.h"
 #include "light.h"
 #include "integrator.h"
 
@@ -27,10 +29,10 @@ class scene{
 		/// Parse functions for different properties. 
 	    string parse_parameter(TiXmlElement* element, string type);
 	    int parse_int(TiXmlElement* element, string tag);
-	    float parse_float(TiXmlElement* element, string tag);
-	    float parse_float(string val);
+	    double parse_double(TiXmlElement* element, string tag);
+	    double parse_double(string val);
 		bool parse_bool(TiXmlElement* element, string tag);
-	    float parse_angle(TiXmlElement* element, string tag);
+	    double parse_angle(TiXmlElement* element, string tag);
 	    color parse_color(TiXmlElement* element, string tag);
 	    vector3 parse_vector3(TiXmlElement* element, string tag);
 
@@ -42,6 +44,8 @@ class scene{
 		camera* parse_camera(TiXmlElement* element);
 	    int parse_objects(TiXmlElement* element, const list<material*>& materials);
 	    object* parse_object_sphere(TiXmlElement* element, const list<material*>& materials);
+	    object* parse_object_cone(TiXmlElement* element, const list<material*>& materials);
+	    object* parse_object_cylinder(TiXmlElement* element, const list<material*>& materials);
 	    int parse_materials(TiXmlElement* element);
 	    material* parse_simplemat(TiXmlElement* element);
 	    int parse_lights(TiXmlElement* element);

@@ -6,19 +6,22 @@
 #include <iostream>
 using namespace std;
 
-class sphere : public object {
+class cylinder : public object {
 
 	private:
 		material* mat;
 		vector3 center;
 		double radius;
+		double height;
 	public:
-		sphere();
-		sphere(material* Mat, vector3 Center, double Radius);
+		cylinder();
+		cylinder(material* Mat, vector3 Center, double Radius, double Height);
 		material* get_material() const;
 		vector3 get_center() const;
 		double get_radius() const;
+		double get_height() const;
 		bool intersect(double& t, ray camera_ray) const;
+		bool intersect_base(double& t, ray camera_ray, double h) const;
 		vector3 get_normal(vector3 v1) const;
 		virtual void print(ostream &stream) const;
 };

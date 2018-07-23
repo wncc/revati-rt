@@ -9,13 +9,13 @@ class light {
 	private:
 		vector3 position;
 		color clr;
-		float ka;
+		double ka;
 	public:
 		light();
-		light(vector3 Position, color Clr, float Ka);
+		light(vector3 Position, color Clr, double Ka);
 		vector3 get_position() const;
 		color get_clr() const;
-		float get_ka() const;
+		double get_ka() const;
 		void print(ostream &stream) const;
 };
 

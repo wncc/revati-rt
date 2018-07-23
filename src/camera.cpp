@@ -4,7 +4,7 @@ camera :: camera(){
 
 }
 
-camera :: camera(vector3 Lookat, vector3 Eye, vector3 Up, float Fov, float Near, float Far){
+camera :: camera(vector3 Lookat, vector3 Eye, vector3 Up, double Fov, double Near, double Far){
 	lookat = Lookat;
 	eye = Eye;
 	up = Up;
@@ -13,9 +13,9 @@ camera :: camera(vector3 Lookat, vector3 Eye, vector3 Up, float Fov, float Near,
 	far = Far;
 }
 
-ray camera :: generate_ray(float x, float y, int w, int h){
-	float Px = (2.0*(x/w)-1.0) * tan(fov/2.0) * w/h; 
-	float Py = (1.0-2.0*y/h) * tan(fov/2.0); 
+ray camera :: generate_ray(double x, double y, int w, int h){
+	double Px = (2.0*(x/w)-1.0) * tan(fov/2.0) * w/h; 
+	double Py = (1.0-2.0*y/h) * tan(fov/2.0); 
 	vector3 direction = up.cross(lookat)*Px + up*Py + lookat;
 	return ray(eye,direction,near,far);
 }
@@ -32,15 +32,15 @@ vector3 camera :: get_up() const{
 	return up;
 }
 		
-float camera :: get_fov() const{
+double camera :: get_fov() const{
 	return fov;
 }
 		
-float camera :: get_near() const{
+double camera :: get_near() const{
 	return near;
 }
 		
-float camera :: get_far() const{
+double camera :: get_far() const{
 	return far;
 }
 		

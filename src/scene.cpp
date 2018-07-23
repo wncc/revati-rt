@@ -25,13 +25,13 @@ int scene::parse_int(TiXmlElement* element, string tag){
 	return val;
 }
 
-float scene::parse_float(TiXmlElement* element, string tag){
-	return parse_float(parse_parameter(element->FirstChildElement(tag.c_str()), "float"));
+double scene::parse_double(TiXmlElement* element, string tag){
+	return parse_double(parse_parameter(element->FirstChildElement(tag.c_str()), "double"));
 }
 
-float scene::parse_float(string value){
+double scene::parse_double(string value){
 	istringstream stream(value);
-	float val;
+	double val;
 	stream >> val;
 	return val;
 }
@@ -44,10 +44,10 @@ bool scene::parse_bool(TiXmlElement* element, string tag){
 	return val;
 }
 
-float scene::parse_angle(TiXmlElement* element, string tag){
+double scene::parse_angle(TiXmlElement* element, string tag){
 	TiXmlElement* subelement = element->FirstChildElement(tag.c_str());
 	istringstream stream(string(subelement->Attribute("angle")));
-	float val;
+	double val;
 	string unit;
 	stream >> val >> unit;
 	if(unit == "deg")
@@ -60,7 +60,7 @@ float scene::parse_angle(TiXmlElement* element, string tag){
 color scene::parse_color(TiXmlElement* element, string tag){
 	TiXmlElement* subelement = element->FirstChildElement(tag.c_str());
 	istringstream stream(string(subelement->Attribute("color")));
-	float x, y, z;
+	double x, y, z;
 	stream >> x >> y >> z;
 	return color(x,y,z);
 }
@@ -68,7 +68,7 @@ color scene::parse_color(TiXmlElement* element, string tag){
 vector3 scene::parse_vector3(TiXmlElement* element, string tag){
 	TiXmlElement* subelement = element->FirstChildElement(tag.c_str());
 	istringstream stream(string(subelement->Attribute("vector3")));
-	float x, y, z;
+	double x, y, z;
 	stream >> x >> y >> z;
 	return vector3(x,y,z);
 }
@@ -117,8 +117,8 @@ camera* scene::parse_camera(TiXmlElement* element){
 					parse_vector3(element_camera, "eye"),
 					parse_vector3(element_camera, "up"),
 					parse_angle(element_camera, "fov"),
-					parse_float(element_camera, "near"),
-					parse_float(element_camera, "far")
+					parse_double(element_camera, "near"),
+					parse_double(element_camera, "far")
 				));
 }
 
@@ -127,8 +127,8 @@ image* scene::parse_image(TiXmlElement* element){
 	if (!element_image)
 		throw runtime_error("No image found in scene file.");
 	return new image(	
-					parse_float(element_image, "width"),
-					parse_float(element_image, "height"),
+					parse_double(element_image, "width"),
+					parse_double(element_image, "height"),
 					parse_color(element_image, "bgcolor"));
 }
 
@@ -156,8 +156,8 @@ material* scene::parse_simplemat(TiXmlElement* element){
 			parse_color(element, "specular"),
 			parse_color(element, "reflect"),
 			parse_color(element, "transmit"),
-			parse_float(element, "eta"),
-			parse_float(element, "n"),
+			parse_double(element, "eta"),
+			parse_double(element, "n"),
 			parse_bool(element, "isreflect"),
 			parse_bool(element, "istransmit")));
 }
@@ -174,12 +174,15 @@ int scene::parse_objects(TiXmlElement* element, const list<material*>& matlist){
 	while (child)
 	{
 		string name(child->Value());
-
-		if (name == "sphere")
+		if(name=="sphere"){
 			objects.push_back(parse_object_sphere(child, matlist));
-		else
+		} else if(name=="cone"){
+			objects.push_back(parse_object_cone(child, matlist));
+		} else if(name=="cylinder"){
+			objects.push_back(parse_object_cylinder(child, matlist));
+		} else{
 			throw invalid_argument("Invalid object in scene file.");
-
+		}
 		child = child->NextSiblingElement();
 		n_objects++;
 	}
@@ -193,8 +196,24 @@ int scene::parse_objects(TiXmlElement* element, const list<material*>& matlist){
 object* scene::parse_object_sphere(TiXmlElement* element, const list<material*>& matlist){
 	material* m = find_material(parse_parameter(element, "material"),	matlist);
 	return (object*)(new sphere(m,
-									parse_vector3(element,  "center"),
-									parse_float(element, "radius")));
+								parse_vector3(element,  "center"),
+								parse_double(element, "radius")));
+}
+
+object* scene::parse_object_cone(TiXmlElement* element, const list<material*>& matlist){
+	material* m = find_material(parse_parameter(element, "material"),	matlist);
+	return (object*)(new cone(m,
+								parse_vector3(element,  "center"),
+								parse_double(element, "radius"),
+								parse_double(element, "height")));
+}
+
+object* scene::parse_object_cylinder(TiXmlElement* element, const list<material*>& matlist){
+	material* m = find_material(parse_parameter(element, "material"),	matlist);
+	return (object*)(new cylinder(m,
+								parse_vector3(element,  "center"),
+								parse_double(element, "radius"),
+								parse_double(element, "height")));
 }
 
 int scene::parse_lights(TiXmlElement* element){
@@ -225,7 +244,7 @@ light* scene::parse_pointlight(TiXmlElement* element){
 	return (light*)(new light(
 			parse_vector3(element, "position"),
 			parse_color(element, "color"),
-			parse_float(element, "ka")));
+			parse_double(element, "ka")));
 }
 
 integrator* scene::parse_integrator(TiXmlElement* element){

@@ -4,7 +4,7 @@ light :: light(){
 	
 }
 
-light :: light(vector3 Position, color Clr, float Ka){
+light :: light(vector3 Position, color Clr, double Ka){
 	position = Position;
 	clr = Clr;
 	ka = Ka;
@@ -18,7 +18,7 @@ color light :: get_clr() const{
 	return clr;
 }
 
-float light :: get_ka() const{
+double light :: get_ka() const{
 	return ka;
 }
 
