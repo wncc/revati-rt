@@ -1,0 +1,136 @@
+<rt-scene>
+
+<camera>
+	<lookat vector3="0.0 0.0 1.0" />
+	<eye	vector3="0.0 0.0 0.0" />
+	<up		vector3="0.0 1.0 0.0" />
+	<fov	angle=".942 deg" />
+    <near	double="1e-4" />
+	<far	double="1e4" />
+</camera>
+
+<image>
+	<width double="1024" />
+	<height double="768" />
+	<bgcolor color="0.02 0.03 0.04" />	
+</image>
+
+<materials>
+	<simplemat id="red">
+		<ambient color="0.01 0.01 0.01" />
+		<diffuse color="0.9 0.02 0" />
+		<specular color="1.0 1.0 1.0" />	
+		<reflect color="0.0 0.0 0.0" />
+		<transmit color="0.0 0.0 0.0" />
+		<eta double="0.0"/>
+		<n double="100"/>
+		<isreflect bool="false"/>
+		<istransmit bool="false"/>
+	</simplemat>
+	<simplemat id="green">
+		<ambient color="0.01 0.01 0.01" />
+		<diffuse color="0 0.8 0.1" />
+		<specular color="1.0 1.0 1.0" />	
+		<reflect color="0.0 0.0 0.0" />
+		<transmit color="0.0 0.0 0.0" />
+		<eta double="0.0"/>
+		<n double="100"/>
+		<isreflect bool="false"/>
+		<istransmit bool="false"/>
+	</simplemat>
+	<simplemat id="blue">
+		<ambient color="0.01 0.01 0.01" />
+		<diffuse color="0 0.05 0.9" />
+		<specular color="1.0 1.0 1.0" />	
+		<reflect color="0.0 0.0 0.0" />
+		<transmit color="0.0 0.0 0.0" />
+		<eta double="0.0"/>
+		<n double="100"/>
+		<isreflect bool="false"/>
+		<istransmit bool="false"/>
+	</simplemat>
+	<simplemat id="yellow">
+		<ambient color="0.01 0.01 0.01" />
+		<diffuse color="0.9 0.9 0.0" />
+		<specular color="1.0 1.0 1.0" />	
+		<reflect color="0.0 0.0 0.0" />
+		<transmit color="0.0 0.0 0.0" />
+		<eta double="0.0"/>
+		<n double="100"/>
+		<isreflect bool="false"/>
+		<istransmit bool="false"/>
+	</simplemat>
+	<simplemat id="glass">
+		<ambient color="0.0 0.0 0.0" />
+		<diffuse color="0.0 0.0 0.0" />
+		<specular color="1.0 1.0 1.0" />
+		<reflect color="0.999 0.999 0.999" />
+		<transmit color="0.999 0.999 0.999" />
+		<eta double="1.5"/>
+		<n double="100" />
+		<isreflect bool="true"/>
+		<istransmit bool="true"/>
+	</simplemat>	
+	<simplemat id="mirror">
+		<ambient color="0.0 0.0 0.0" />
+		<diffuse color="0.0 0.0 0.0" />
+		<specular color="1.0 1.0 1.0" />
+		<reflect color="0.999 0.999 0.999" />
+		<transmit color="0.999 0.999 0.999" />
+		<eta double="1.5"/>
+		<n double="100" />
+		<isreflect bool="true"/>
+		<istransmit bool="false"/>
+	</simplemat>	
+</materials>
+
+<objects>	
+	
+	<sphere material="glass">
+		<center vector3="0 0 7800.0" />
+		<radius double="40.0" />
+		<height double="40.0" />
+	</sphere>
+	<sphere material="green">
+		<center vector3="40.0 0.0 8000.0" />
+		<radius double="20.0" />
+		<height double="40.0" />
+	</sphere>
+	<sphere material="yellow">
+		<center vector3="-40.0 0.0 8000.0" />
+		<radius double="20.0" />
+		<height double="40.0" />
+	</sphere>
+	<sphere material="red">
+		<center vector3="0.0 -40 8000.0" />
+		<radius double="20.0" />
+		<height double="20.0" />
+	</sphere>
+	<sphere material="blue">
+		<center vector3="0.0 40 8000.0" />
+		<radius double="20.0" />
+		<height double="40.0" />
+	</sphere>
+</objects>
+
+<lights>
+	<pointlight>
+		<position vector3="200 1000.0 7000.0" />
+		<color color="2.0 2.0 2.0" />
+		<ka double="0.05" />
+	</pointlight>
+	<pointlight>
+		<position vector3="-500 -1000.0 9000.0" />
+		<color color="2.0 2.0 2.0" />
+		<ka double="0.05" />
+	</pointlight>
+</lights>
+
+<integrator>
+	<whitted>
+		<depth-of-recursion int="2" />
+	</whitted>
+</integrator>
+
+
+</rt-scene>

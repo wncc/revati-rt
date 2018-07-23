@@ -38,9 +38,8 @@ double scene::parse_double(string value){
 
 bool scene::parse_bool(TiXmlElement* element, string tag){
 	TiXmlElement* subelement = element->FirstChildElement(tag.c_str());
-	istringstream stream(string(subelement->Attribute("bool")));
-	bool val;
-	stream >> val;
+	string s = string(subelement->Attribute("bool"));
+	bool val = (s=="true");
 	return val;
 }
 
@@ -152,6 +151,7 @@ int scene::parse_materials(TiXmlElement* element){
 material* scene::parse_simplemat(TiXmlElement* element){
 	return (material*)(new material(
 			parse_parameter(element, "id"),
+			parse_color(element, "ambient"),
 			parse_color(element, "diffuse"),
 			parse_color(element, "specular"),
 			parse_color(element, "reflect"),

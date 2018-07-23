@@ -3,8 +3,9 @@
 material :: material(){	
 }
 
-material :: material(string Id, color Diffuse, color Specular, color Reflect, color Transmit, double Eta, double N, bool Isreflect, bool Istransmit){
+material :: material(string Id, color Ambient, color Diffuse, color Specular, color Reflect, color Transmit, double Eta, double N, bool Isreflect, bool Istransmit){
 	id = Id;
+	ambient = Ambient;
 	diffuse = Diffuse;
 	specular = Specular;
 	reflect = Reflect;
@@ -32,12 +33,20 @@ bool material :: get_istransmit() const{
 	return istransmit;
 }
 
+bool material :: get_isreflect() const{
+	return isreflect;
+}
+
 color material :: get_transmit() const{
 	return transmit;
 }
 
 color material :: get_diffuse() const{
 	return diffuse;
+}
+
+color material :: get_ambient() const{
+	return ambient;
 }
 
 color material :: get_specular() const{
@@ -51,6 +60,8 @@ color material :: get_reflect() const{
 void material :: print(ostream &stream) const{
 	stream << "MATERIAL:" << endl;
 	stream << "\tid- " << id << endl;
+	stream << "\tambient- ";
+	ambient.print(stream);
 	stream << "\tdiffuse- ";
 	diffuse.print(stream);
 	stream << "\tspecular- ";

@@ -16,40 +16,55 @@
 </image>
 
 <materials>
-	<simplemat id="diffuse_red">
+	<simplemat id="green">
+		<ambient color="0.0 0.0 0.0" />
 		<diffuse color="0.9 0.02 0" />
 		<specular color="1.0 1.0 1.0" />	
 		<reflect color="0.0 0.0 0.0" />
 		<transmit color="0.0 0.0 0.0" />
 		<eta double="0.0"/>
-		<n double="100"/>
+		<n double="10"/>
 		<isreflect bool="false"/>
 		<istransmit bool="false"/>
 	</simplemat>
-	<simplemat id="diffuse_green">
+	<simplemat id="red">
+		<ambient color="0.0 0.0 0.0" />
 		<diffuse color="0 0.8 0.1" />
 		<specular color="1.0 1.0 1.0" />	
-		<reflect color="0.0 0.0 0.0" />
+		<reflect color="0.5 0.5 0.5" />
 		<transmit color="0.0 0.0 0.0" />
-		<eta double="0.0"/>
-		<n double="100"/>
-		<isreflect bool="false"/>
-		<istransmit bool="false"/>
+		<eta double="10.0"/>
+		<n double="10"/>
+		<isreflect bool="true"/>
+		<istransmit bool="true"/>
 	</simplemat>
-	<simplemat id="diffuse_blue">
+	<simplemat id="blue">
+		<ambient color="0.0 0.0 0.0" />
 		<diffuse color="0 0.05 0.9" />
 		<specular color="1.0 1.0 1.0" />	
 		<reflect color="0.0 0.0 0.0" />
 		<transmit color="0.0 0.0 0.0" />
 		<eta double="0.0"/>
-		<n double="100"/>
+		<n double="10"/>
 		<isreflect bool="false"/>
 		<istransmit bool="false"/>
 	</simplemat>
+	<simplemat id="yellow">
+		<ambient color="0.0 0.0 0.0" />
+		<diffuse color="0.9 0.9 0.0" />
+		<specular color="1.0 1.0 1.0" />	
+		<reflect color="0.0 0.0 0.0" />
+		<transmit color="0.0 0.0 0.0" />
+		<eta double="10.0"/>
+		<n double="10"/>
+		<isreflect bool="false"/>
+		<istransmit bool="true"/>
+	</simplemat>
 	<simplemat id="glass">
+		<ambient color="0.0 0.0 0.0" />
 		<diffuse color="0.0 0.0 0.0" />
-		<specular color="0.0 0.0 0.0" />
-		<reflect color="0.5 0.5 0.5" />
+		<specular color="1.0 1.0 1.0" />
+		<reflect color="0.999 0.999 0.999" />
 		<transmit color="0.999 0.999 0.999" />
 		<eta double="1.5"/>
 		<n double="100" />
@@ -57,8 +72,9 @@
 		<istransmit bool="true"/>
 	</simplemat>	
 	<simplemat id="mirror">
+		<ambient color="0.0 0.0 0.0" />
 		<diffuse color="0.0 0.0 0.0" />
-		<specular color="0.0 0.0 0.0" />
+		<specular color="1.0 1.0 1.0" />
 		<reflect color="0.999 0.999 0.999" />
 		<transmit color="0.999 0.999 0.999" />
 		<eta double="1.5"/>
@@ -69,36 +85,31 @@
 </materials>
 
 <objects>	
-	<sphere material="diffuse_green">
-		<center vector3="15.0 10 8050.0" />
+	
+	<cylinder material="blue">
+		<center vector3="-50.0 -25.0 7870.0" />
 		<radius double="20.0" />
-		<height double="40.0" />
-	</sphere>
-	<sphere material="diffuse_red">
-		<center vector3="-25 -20 8000.0" />
-		<radius double="15.0" />
-		<height double="40.0" />
-	</sphere>
-	<sphere material="diffuse_red">
-		<center vector3="15 -25 7950.0" />
-		<radius double="15.0" />
-		<height double="40.0" />
-	</sphere>
-	<sphere material="glass">
-		<center vector3="15 20 8000.0" />
-		<radius double="15.0" />
-		<height double="40.0" />
+		<height double="50.0" />
+	</cylinder>
+	<cone material="green">
+		<center vector3="40.0 -30.0 7900.0" />
+		<radius double="20.0" />
+		<height double="60.0" />
+	</cone>
+	<sphere material="red">
+		<center vector3="0.0 0 7900.0" />
+		<radius double="20.0" />
 	</sphere>
 </objects>
 
 <lights>
 	<pointlight>
-		<position vector3="200 1000.0 7000.0" />
+		<position vector3="0.0 1000.0 9000.0" />
 		<color color="2.0 2.0 2.0" />
 		<ka double="0.05" />
 	</pointlight>
 	<pointlight>
-		<position vector3="-500 1000.0 9000.0" />
+		<position vector3="-2000 1000.0 7000.0" />
 		<color color="2.0 2.0 2.0" />
 		<ka double="0.05" />
 	</pointlight>

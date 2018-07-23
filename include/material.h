@@ -8,6 +8,7 @@ class material {
 	
 	private:
 		string id;
+		color ambient;
 		color diffuse;
 		color specular;
 		color reflect;
@@ -18,8 +19,9 @@ class material {
 		bool istransmit;
 	public:
 		material();
-		material(string Id, color Diffuse, color Specular, color Reflect, color Transmit, double Eta, double N, bool Isreflect, bool Istransmit);
+		material(string Id, color Ambient, color Diffuse, color Specular, color Reflect, color Transmit, double Eta, double N, bool Isreflect, bool Istransmit);
 		string get_id() const;
+		color get_ambient() const;
 		color get_diffuse() const;
 		color get_specular() const;
 		color get_reflect() const;
@@ -27,6 +29,7 @@ class material {
 		double get_eta() const;
 		double get_n() const;
 		bool get_istransmit() const;
+		bool get_isreflect() const;
 		void print(ostream &stream) const;
 };
 

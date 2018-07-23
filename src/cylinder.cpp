@@ -13,12 +13,12 @@ cylinder :: cylinder(material* Mat, vector3 Center, double Radius, double Height
 
 vector3 cylinder :: get_normal(vector3 v1) const{
 	// Point is on one of the bases
-	if (v1.x()<center.x()+radius && v1.x()>center.x()-radius && v1.z()<center.z()+radius && v1.z()>center.z()-radius){
+	if (abs(v1.x()-center.x())<radius && abs(v1.z()-center.z())<radius){
 		double epsilon = 0.000001;
-		if (v1.y() < center.y()+height+epsilon && v1.y()>center.y()+height-epsilon){
+		if (abs(v1.y()-center.y()-height)<epsilon){
 			return vector3(0,1,0);
 		}
-		if (v1.y() < center.y()+epsilon && v1.y()>center.y()-epsilon){
+		if (abs(v1.y()-center.y())<epsilon){
 			return vector3(0,-1,0);
 		}
 	}
